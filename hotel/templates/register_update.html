@@ -1,0 +1,71 @@
+<html>
+<head>
+    {% if title %}
+    <title> {{ title }}</title>
+    {% else %}
+    <title> TITLE</title>
+    {% endif %}
+</head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ url_for('static', filename = 'main1.css') }}">
+<body>
+<a href="{{ url_for('home') }}" class="nav-link" style="text-align: center;color: wheat;font-family: Georgia;font-size: xx-large">Back Home</a>
+<div class="row">
+<!--<div class="col-md-4"></div>-->
+<div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Edit Admin</legend>
+
+                <div class="form-group">
+                    {{ form.username2.label(class="form-control-label") }}
+                    {% if form.username2.errors %}
+                        {{ form.username2(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.username2.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.username2(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.password2.label(class="form-control-label") }}
+                    {% if form.password2.errors %}
+                        {{ form.password2(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password2.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password2(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.confirm_password2.label(class="form-control-label") }}
+                    {% if form.confirm_password2.errors %}
+                        {{ form.confirm_password2(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.confirm_password2.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.confirm_password2(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit2(class="btn btn-outline-info") }}
+            </div>
+        </form>
+
+    </div>
+</div>
+<!--<div class="col-md-5"></div>-->
+</div>
+</body>
+</html>

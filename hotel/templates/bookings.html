@@ -1,0 +1,44 @@
+<html>
+<head>
+    {% if title %}
+    <title> {{ title }}</title>
+    {% else %}
+    <title> TITLE</title>
+    {% endif %}
+</head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ url_for('static', filename = 'main1.css') }}">
+<body class="room">
+<a href="{{ url_for('home') }}" class="nav-link" style="text-align: center;color: wheat;font-family: Georgia;font-size: xx-large">Back Home</a>
+<div class="container-fluid">
+    {% with messages = get_flashed_messages(with_categories = true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category}}">
+            <center> {{ message }}</center>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    {% for booking in booked %}
+             <div class="col-md-5 well" id="a">
+                 <h5>Booking Number : {{ booking.roomno }}</h5>
+                 <h5 class="category">RoomType: {{ booking.category }}</h5>
+                 <h5>Check In: {{ booking.checkin }}</h5>
+                 <h5>Check Out: {{ booking.checkout }}</h5>
+                 <h5>Name: {{ booking.name }}</h5>
+                 <h5>Phone No: {{ booking.mobno }}</h5>
+                <form method="post" action="{{ url_for('delete_booking',id=booking.roomno) }}">
+                 <input type="hidden" name="_method" value="DELETE">
+                 {{ form.submit(class='btn btn-primary btn-sm') }}
+                 </form>
+                 <form method="get" action="{{ url_for('update_booking',id=booking.roomno) }}">
+                 <input type="hidden" name="_method" value="EDITING">
+                 {{ form.submit2(class='btn btn-primary btn-sm') }}
+                 </form>
+             </div>
+    {% endfor %}
+
+</form>
+</div>
+</body>

@@ -1,0 +1,42 @@
+<html>
+<head>
+    {% if title %}
+    <title> {{ title }}</title>
+    {% else %}
+    <title> TITLE</title>
+    {% endif %}
+</head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ url_for('static', filename = 'main1.css') }}">
+<body class="manager">
+<a href="{{ url_for('home') }}" class="nav-link" style="text-align: center;color: wheat;font-family: Georgia;font-size: xx-large">Back Home</a>
+<div class="container-fluid">
+    {% with messages = get_flashed_messages(with_categories = true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category}}">
+            <center>{{ message }}</center>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    {% for manager in show %}
+
+             <div class="col-md-5 well" id="a">
+                 <h5 class="category" >ID :  {{ manager.id }}</h5>
+                 <h5>NAME : {{ manager.name }}</h5>
+                 <h5>Username : {{ manager.username }}</h5>
+                 <h5>Password : ******** </h5>
+                 <form method="post" action="{{ url_for('delete_admin',id=manager.id) }}">
+                 <input type="hidden" name="_method" value="DELETE">
+                 {{ form.submit(class='btn btn-primary btn-sm') }}
+                 </form>
+                 <form method="get" action="{{ url_for('register_update',id=manager.id) }}">
+                 <input type="hidden" name="_method" value="DELETE">
+                 {{ form.submit2(class='btn btn-primary btn-sm') }}
+                 </form>
+             </div>
+
+    {% endfor %}
+</div>
+</body>

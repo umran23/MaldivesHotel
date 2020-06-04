@@ -1,0 +1,45 @@
+<html>
+<head>
+    {% if title %}
+    <title> {{ title }}</title>
+    {% else %}
+    <title> TITLE</title>
+    {% endif %}
+</head>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ url_for('static', filename = 'main1.css') }}">
+<body>
+<a href="{{ url_for('home') }}" class="nav-link" style="text-align: center;color: wheat;font-family: Georgia;font-size: xx-large">Back Home</a>
+<div class="container-fluid">
+    {% with messages = get_flashed_messages(with_categories = true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category}}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    {% for room in room %}
+        <div class="col-md-5 well">
+            <a href="{{ url_for('book') }}" class="b"><h1>{{ room.category }}</h1></a>
+                <a href="" class="a"><h4>No of beds: {{ room.beds }}</h4></a>
+                <a href="" class="a"><h4>Facilities: {{ room.facilities }}</h4></a>
+                <a href="" class="a"><h4>Rooms Available: {{ room.available }}</h4></a>
+                <a href="" class="a"><h4>Price per night: {{ room.price }} ₽ </h4></a>
+                 <form method="post" action="{{ url_for('delete_room',category=room.category) }}">
+                 <input type="hidden" name="_method" value="DELETE">
+                 {{ form.submit(class='btn btn-primary btn-sm') }}
+                 </form>
+                 <form method="get" action="{{ url_for('room_update',category=room.category) }}">
+                 <input type="hidden" name="_method" value="EDIT">
+                 {{ form.submit2(class='btn btn-primary btn-sm') }}
+                 </form><br>
+
+        </div>
+    {% endfor %}
+
+</div>
+
+</body>
