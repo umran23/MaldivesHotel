@@ -9,7 +9,7 @@ from hotel.forms import BookRoom, AdminForm, LoginForm, RegistrationForm, NewRoo
 from hotel.models import booking, rooms, admins
 from flask_login import login_user, current_user, logout_user
 
-p="Qwerty!@#123"
+p = "Qwerty!@#123"
 
 
 @app.route('/')
