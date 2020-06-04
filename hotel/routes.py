@@ -174,7 +174,7 @@ def logout():
 def newroom():
     form = NewRoom()
     if form.validate_on_submit():
-        image = _compat.to_bytes(form.image.name)
+        image = _compat.to_bytes(form.image.name) #Turn string into binary(bytes) to be able to save it in the database 
         rtype = rooms(category=form.category.data, quantity=form.quantity.data, beds=form.beds.data,
                       available=form.quantity.data, price=form.price.data, facilities=form.facilities.data, image=image)
         db.session.add(rtype)
