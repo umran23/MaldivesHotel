@@ -7,5 +7,5 @@ Hotel Booking System Using flask and SQLalchemy
 - Add/Edit/Delete Rooms
 - Add/Edit/Delete Manegers 
 - Check Avibility 
-- CSS & HTML Templets 
+- CSS & HTML Templates 
 -------------------------------------------------------
